@@ -1,0 +1,12 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="48" fill="#112033"/>
+  <rect x="112" y="112" width="976" height="576" rx="40" fill="#F8F3EA"/>
+  <rect x="176" y="182" width="310" height="436" rx="34" fill="#E7D7C1"/>
+  <rect x="580" y="214" width="378" height="68" rx="18" fill="#0F8B8D"/>
+  <rect x="580" y="336" width="338" height="30" rx="15" fill="#112033"/>
+  <rect x="580" y="390" width="242" height="30" rx="15" fill="#F26A4B"/>
+  <rect x="580" y="444" width="320" height="30" rx="15" fill="#F3B63A"/>
+  <circle cx="332" cy="328" r="92" fill="#112033"/>
+  <rect x="242" y="474" width="180" height="28" rx="14" fill="#112033"/>
+  <text x="580" y="190" fill="#112033" font-family="Arial, sans-serif" font-size="34" font-weight="700">Asesoria Empleabilidad</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" rx="48" fill="#FFF5DC"/>
+  <rect x="102" y="112" width="996" height="576" rx="38" fill="#112033"/>
+  <circle cx="260" cy="262" r="88" fill="#F26A4B"/>
+  <circle cx="400" cy="474" r="58" fill="#0F8B8D"/>
+  <circle cx="504" cy="316" r="40" fill="#F3B63A"/>
+  <rect x="608" y="198" width="342" height="70" rx="18" fill="#F8F3EA"/>
+  <rect x="608" y="322" width="414" height="30" rx="15" fill="#E7D7C1"/>
+  <rect x="608" y="382" width="350" height="30" rx="15" fill="#F26A4B"/>
+  <rect x="608" y="442" width="286" height="30" rx="15" fill="#0F8B8D"/>
+  <rect x="608" y="536" width="220" height="46" rx="23" fill="#F3B63A"/>
+  <text x="608" y="182" fill="#F8F3EA" font-family="Arial, sans-serif" font-size="36" font-weight="700">Experiencia Phygital</text>
+</svg>
