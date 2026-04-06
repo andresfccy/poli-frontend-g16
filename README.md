@@ -1,109 +1,123 @@
 # Poli Service Hub
 
-Prototipo web para la **Entrega 1** del proyecto universitario "Plataforma de Servicios Digitales". La aplicacion se construyo con una base ligera en `React + TypeScript + Tailwind CSS`, usando datos locales y `localStorage` para demostrar interaccion sin sobrecargar el proyecto.
+Proyecto universitario "Plataforma de Servicios Digitales", desarrollado de forma incremental a lo largo de varias entregas. La aplicacion esta construida con `React + TypeScript + Tailwind CSS`.
 
-## Objetivo de la entrega
+---
 
-Construir una maquetacion funcional que represente el aplicativo final y cubra los puntos principales del enunciado:
+## Historial de entregas
+
+### Entrega 1 — Prototipo inicial (Semana 3)
+
+**Objetivo:** Construir una maquetacion funcional que represente el aplicativo final y cubra los puntos principales del enunciado.
+
+Funcionalidades entregadas:
 
 - Home con header, footer, bienvenida, destacados, CTA y seccion informativa.
-- Listado dinamico de servicios en cards.
-- Vista de detalle por servicio.
-- Pagina de contacto con validaciones basicas.
-- Gestion de favoritos usando `localStorage`.
-- Mini CRUD basico para crear y eliminar servicios.
+- Listado dinamico de servicios en cards desde datos locales (`src/data/services.ts`).
+- Vista de detalle individual por servicio.
+- Favoritos con persistencia en `localStorage`.
+- Pagina de contacto con validaciones de campos obligatorios y formato de correo.
+- Mini CRUD basico: crear y eliminar servicios.
+- Navegacion con mas de 5 vistas usando React Router DOM.
+
+---
+
+### Entrega 2 — Prototipo funcional (Semana 5)
+
+**Objetivo:** Evolucionar el prototipo hacia un sistema funcional con CRUD completo, capa de API simulada, accesibilidad mejorada y diseno responsive revisado.
+
+Funcionalidades entregadas:
+
+- **Edicion de servicios**: CRUD completo. El panel de Gestion ahora permite editar cualquier servicio existente. Al presionar "Editar", el formulario se pre-llena con los datos actuales; el boton de envio cambia entre "Crear servicio" y "Guardar cambios" segun el modo activo.
+- **Capa de API simulada** (`src/services/api.ts`): modulo independiente con funciones async que encapsulan todas las operaciones de datos e introducen un retardo de 400 ms para representar latencia de red.
+- **Estado de carga**: la interfaz deshabilita controles y muestra texto de progreso ("Creando...", "Guardando...") mientras se procesa una operacion.
+- **Mejoras de accesibilidad**: enlace de salto "Saltar al contenido", `aria-expanded` y cierre con `Escape` en el menu movil, `aria-pressed` y `aria-label` descriptivo en botones de favorito, `role="alert"` en errores de formulario y `aria-live="polite"` en mensajes de exito.
+- **Diseno responsive revisado**: todos los componentes adaptados para movil, tablet y escritorio.
+- **Documentacion tecnica actualizada** en este README.
+
+---
 
 ## Paginas incluidas
 
-1. `Inicio`
-   Presenta el valor del aplicativo, estadisticas visuales, servicios destacados y bloques informativos.
-2. `Servicios`
-   Muestra el catalogo completo con cards dinamicas, filtro por categoria y busqueda textual.
-3. `Detalle del servicio`
-   Presenta informacion completa, imagen, beneficios, etiquetas y acciones de favorito o contacto.
-4. `Favoritos`
-   Recupera desde `localStorage` los servicios guardados por el usuario.
-5. `Contacto`
-   Incluye formulario con campos obligatorios, validacion de correo y mensaje de confirmacion.
-6. `Gestion`
-   Permite crear nuevos servicios y eliminar registros existentes para evidenciar un mini CRUD.
+| Ruta | Pagina | Descripcion |
+|---|---|---|
+| `/` | Inicio | Hero, estadisticas, servicios destacados y bloques informativos |
+| `/servicios` | Servicios | Catalogo completo con busqueda textual y filtro por categoria |
+| `/servicios/:id` | Detalle | Informacion ampliada, beneficios, etiquetas y acciones |
+| `/favoritos` | Favoritos | Servicios guardados, recuperados desde `localStorage` |
+| `/contacto` | Contacto | Formulario con validacion de campos y formato de correo |
+| `/gestion` | Gestion | Panel CRUD completo: crear, editar y eliminar servicios |
 
-## Funcionalidades documentadas para la entrega 1
+## Capa de API simulada
 
-- **Visualizacion de servicios**
-  Cards con imagen, nombre, descripcion breve y boton `Ver mas`.
-- **Detalle del servicio**
-  Pagina individual con descripcion amplia, datos de apoyo y botones de interaccion.
-- **Favoritos**
-  Boton para guardar o quitar servicios. El estado queda persistido con `localStorage`.
-- **Contacto**
-  Formulario con validacion de campos obligatorios y formato de correo.
-- **CRUD basico**
-  Formulario para crear nuevos servicios y boton para eliminarlos.
-- **Datos locales**
-  Servicios iniciales definidos en un arreglo local dentro de `src/data/services.ts`.
+El modulo `src/services/api.ts` encapsula todas las operaciones de datos:
+
+| Funcion | Simula |
+|---|---|
+| `apiGetServices()` | `GET /servicios` |
+| `apiCreateService(input)` | `POST /servicios` |
+| `apiUpdateService(id, input)` | `PUT /servicios/:id` |
+| `apiDeleteService(id)` | `DELETE /servicios/:id` |
+| `apiGetFavorites()` | `GET /favoritos` |
+| `apiSaveFavorites(ids)` | `PUT /favoritos` |
 
 ## Tecnologias usadas
 
-- `React`
-- `TypeScript`
-- `Vite`
-- `Tailwind CSS`
-- `React Router DOM`
-- `localStorage`
+| Tecnologia | Proposito |
+|---|---|
+| React 18 | UI declarativa basada en componentes |
+| TypeScript | Tipado estatico en toda la aplicacion |
+| Vite | Bundler y servidor de desarrollo |
+| Tailwind CSS | Estilos utilitarios y diseno responsive |
+| React Router DOM v6 | Enrutamiento del lado del cliente |
+| localStorage | Persistencia de datos sin backend |
 
-## Estructura principal
+## Estructura del proyecto
 
 ```text
-.
-|-- public/images
-|-- src/components
-|-- src/context
-|-- src/data
-|-- src/pages
-|-- src/types
-|-- src/App.tsx
-|-- src/main.tsx
-`-- src/index.css
+src/
+├── components/
+│   ├── Header.tsx          # Navegacion sticky con menu movil y accesibilidad
+│   ├── Footer.tsx          # Pie de pagina con informacion de contacto
+│   ├── Layout.tsx          # Contenedor principal con punto de anclaje para skip link
+│   ├── ServiceCard.tsx     # Tarjeta de servicio con toggle de favorito accesible
+│   └── SectionHeading.tsx  # Encabezado reutilizable para secciones
+├── context/
+│   └── AppContext.tsx      # Estado global: servicios, favoritos, CRUD async
+├── data/
+│   └── services.ts         # Datos iniciales de los 6 servicios
+├── pages/
+│   ├── HomePage.tsx
+│   ├── ServicesPage.tsx
+│   ├── ServiceDetailPage.tsx
+│   ├── FavoritesPage.tsx
+│   ├── ContactPage.tsx
+│   ├── AdminPage.tsx       # Panel CRUD completo con modo edicion
+│   └── NotFoundPage.tsx
+├── services/
+│   └── api.ts              # Capa de API mock con operaciones async
+└── types/
+    └── service.ts          # Interfaces Service y ServiceFormInput
 ```
-
-## Decisiones de diseno
-
-- Se eligio una interfaz moderna con paleta calida (`cream`, `coral`, `teal`, `ink`) para evitar un look generico.
-- La navegacion tiene mas de 5 vistas para cumplir el requerimiento del home y facilitar la demostracion.
-- El estado global se centralizo en un contexto simple para mantener el prototipo ordenado.
-- Las imagenes son SVG locales para evitar depender de recursos externos en la demostracion.
 
 ## Instrucciones de ejecucion
 
-> En este entorno no habia `node`, `npm` ni `pnpm`, por eso el proyecto se dejo estructurado pero no fue posible instalar dependencias ni ejecutar la app aqui.
-
-Cuando lo abras en una maquina con Node.js:
+Requiere Node.js >= 18 y pnpm instalado.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Tambien puedes compilarlo con:
+Para compilar para produccion:
 
 ```bash
 pnpm build
 ```
 
-## Alcance actual y siguiente iteracion
+## Proximos pasos
 
-### Cubierto en Entrega 1
-
-- Maquetacion funcional del aplicativo.
-- Navegacion principal.
-- Interacciones basicas en frontend.
-- Persistencia local de favoritos y servicios.
-- Documentacion tecnica inicial en este `README.md`.
-
-### Posibles mejoras para Entrega 2
-
-- Edicion de servicios para completar CRUD.
-- Integracion con backend o API mock.
-- Mejoras de accesibilidad y pruebas.
-- Ajustes visuales finos luego de validacion con el equipo docente.
+- Integracion con backend real (REST o GraphQL).
+- Pruebas unitarias y de integracion.
+- Autenticacion de usuarios.
+- Ajustes visuales luego de validacion con el equipo docente.

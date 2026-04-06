@@ -57,6 +57,8 @@ export function ServiceCard({ service }: ServiceCardProps) {
                   : 'bg-cream text-ink hover:bg-sand'
               }`}
               onClick={() => toggleFavorite(service.id)}
+              aria-pressed={favorite}
+              aria-label={favorite ? `Quitar ${service.name} de favoritos` : `Guardar ${service.name} en favoritos`}
             >
               {favorite ? 'Guardado' : 'Favorito'}
             </button>
